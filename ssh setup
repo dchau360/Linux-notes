@@ -1,0 +1,19 @@
+#install ssh server on remote system you want to login to
+"sudo apt install openssh-server -y" or "sudo yum install openssh-server"
+
+#ssh auto-login. Run this command on your laptop. Can leave passphrase blank
+ssh-keygen -t ed25519
+
+#ssh auto login pass phrase 
+eval $(ssh-agent)
+
+#to add pass phrase to ssh-agent so auto login
+ssh-add
+
+alias ssha=‘eval $(ssh-agent) && ssh-add’
+
+#Command to copy ssh key to remote-server
+ssh-copy-id root@SERVER_IP_ADDRESS
+
+#edit .ssh/authorized_keys to manually added keys
+
