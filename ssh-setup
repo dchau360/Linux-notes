@@ -17,3 +17,31 @@ ssh-copy-id root@SERVER_IP_ADDRESS
 
 #edit .ssh/authorized_keys to manually added keys
 
+Adding your SSH key to the ssh-agent
+Before adding a new SSH key to the ssh-agent to manage your keys, you should have checked for existing SSH keys and generated a new SSH key. When adding your SSH key to the agent, use the default macOS ssh-add command, and not an application installed by macports, homebrew, or some other external source.
+
+Start the ssh-agent in the background.
+
+$ eval "$(ssh-agent -s)"
+> Agent pid 59566
+If you're using macOS Sierra 10.12.2 or later, you will need to modify your ~/.ssh/config file to automatically load keys into the ssh-agent and store passphrases in your keychain.
+
+First, check to see if your ~/.ssh/config file exists in the default location.
+
+$ open ~/.ssh/config
+> The file /Users/you/.ssh/config does not exist.
+If the file doesn't exist, create the file.
+
+$ touch ~/.ssh/config
+Open your ~/.ssh/config file, then modify the file, replacing ~/.ssh/id_ed25519 if you are not using the default location and name for your id_ed25519 key.
+
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+Note: If you chose not to add a passphrase to your key, you should omit the UseKeychain line.
+
+Add your SSH private key to the ssh-agent and store your passphrase in the keychain. If you created your key with a different name, or if you are adding an existing key that has a different name, replace id_ed25519 in the command with the name of your private key file.
+
+$ ssh-add -K ~/.ssh/id_ed25519
+
