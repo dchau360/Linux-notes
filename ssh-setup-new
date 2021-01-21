@@ -1,0 +1,25 @@
+Generate a public key
+We use SSH keys (not passwords) to log in the the cluster. Use the following command to create a private/public key pair.
+
+IMPORTANT: Use a secure passphrase when prompted. (eg: 16+ characters and 5 character classes)
+ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519
+
+Add your key to your SSH agent
+On a Mac
+Adding your SSH key to your agent is helpful .
+
+1- Check that your SSH agent is actually Mac OS' keychain:
+
+% echo $SSH_AUTH_SOCK
+/private/tmp/com.apple.launchd.MKsPMuDQii/Listeners
+If you see something starting with /private/tmp/..., you should be good.
+
+2- Add your SSH key:
+
+romainkomorn@A594 ~ % ssh-add ~/.ssh/id_ed25519
+Enter passphrase for /Users/romainkomorn/.ssh/id_ed25519:
+Identity added: /Users/romainkomorn/.ssh/id_ed25519 (romainkomorn@Admins-MacBook-Air.local)
+3- Check that your SSH key is in your agent:
+
+romainkomorn@A594 ~ % ssh-add -L
+ssh-ed25519 AA...blahlbahblah...Romainsayshello...vGvBRVezPv romainkomorn@Admins-MacBook-Air.local
