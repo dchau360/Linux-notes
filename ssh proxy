@@ -1,0 +1,4 @@
+# Setup ssh proxy to the host you will want use as proxy and will use port 8123(can use any port)
+ssh -D 8123 -C 10.32.128.221
+
+# Use an alternative browse that will use this proxy. I chose firefox and changed to manual proxy, set socks host will be "localhost" and port 8123
