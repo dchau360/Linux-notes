@@ -21,3 +21,5 @@ docker run -v name:/var/lib/mysql/data
 
 # Default persistence volume directory
 /var/lib/docker/volumes
+
+docker-compose -f docker-compose.yaml up
