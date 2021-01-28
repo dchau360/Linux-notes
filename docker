@@ -12,3 +12,12 @@ docker tag my-app:1.0 $repoURL/my-app:1.0
 
 # Push image to repo
 docker push $repoURL/my-app:1.0
+
+# Persistence volumes type 1: host volume
+docker run -v /home/mount/data:/var/lib/mysql/data
+
+# Or
+docker run -v name:/var/lib/mysql/data
+
+# Default persistence volume directory
+/var/lib/docker/volumes
