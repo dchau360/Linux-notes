@@ -1,0 +1,14 @@
+docker search ubuntu
+docker run ubuntu
+docker ps
+docker images
+docker exec -it $containerID /bin/bash
+
+# buildings docker image from Dockerfile
+docker build -t .
+
+# After building image, tag image so it can be pushed to repo
+docker tag my-app:1.0 $repoURL/my-app:1.0
+
+# Push image to repo
+docker push $repoURL/my-app:1.0
