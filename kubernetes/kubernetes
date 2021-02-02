@@ -10,3 +10,6 @@ kubectl delete -f [file name]
 kubectl describe service nginx-service
 kubectl get pod -o wide
 kubectl get deployment nginx-deployment -o yaml
+
+#encode base64 secret
+echo -n 'username' | base64
