@@ -1,0 +1,9 @@
+kubectl create deployment [name]
+kubectl edit deployment [name]
+kubectl delete deployment [name]
+kubectl get nodes | pod | services | replicaset | deployment
+kubectl logs [pod name]
+kubectl exec -tt [pod name] -- bin/bash
+kubectl describe pod [pod name]
+kubectl apply -f [file name]
+kubectl delete -f [file name]
