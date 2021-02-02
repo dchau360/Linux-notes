@@ -7,3 +7,6 @@ kubectl exec -tt [pod name] -- bin/bash
 kubectl describe pod [pod name]
 kubectl apply -f [file name]
 kubectl delete -f [file name]
+kubectl describe service nginx-service
+kubectl get pod -o wide
+kubectl get deployment nginx-deployment -o yaml
