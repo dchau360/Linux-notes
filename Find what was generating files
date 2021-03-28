@@ -1,0 +1,21 @@
+Find what was generating files
+root@nl-202-31:~# while true; do lsof | grep "/var/tmp"; done;
+sort      230787                        root    3u      REG                8,1          0             46381976 /var/tmp/sortj74hPW
+root@nl-202-31:~# ps -f 230787
+UID         PID   PPID  C STIME TTY      STAT   TIME CMD
+root     230787 230778  1 06:25 ?        SN    11:17 /usr/bin/sort -z
+root@nl-202-31:~# ps -l 230778
+F S   UID    PID   PPID  C PRI  NI ADDR SZ WCHAN  TTY        TIME CMD
+0 S     0 230778 230773  0  90  10 -  2821 wait   ?          0:00 /bin/sh /usr/bin/updatedb.findutils
+root@nl-202-31:~# ps -f 230787
+UID         PID   PPID  C STIME TTY      STAT   TIME CMD
+root     230787 230778  1 06:25 ?        SN    11:17 /usr/bin/sort -z
+root@nl-202-31:~# ps -l 230778
+F S   UID    PID   PPID  C PRI  NI ADDR SZ WCHAN  TTY        TIME CMD
+0 S     0 230778 230773  0  90  10 -  2821 wait   ?          0:00 /bin/sh /usr/bin/updatedb.findutils
+root@nl-202-31:~# ps -l 230773
+F S   UID    PID   PPID  C PRI  NI ADDR SZ WCHAN  TTY        TIME CMD
+0 S     0 230773 230734  0  80   0 -  2811 wait   ?          0:00 /bin/sh /etc/cron.daily/locate
+root@nl-202-31:~# ps -l 230734
+F S   UID    PID   PPID  C PRI  NI ADDR SZ WCHAN  TTY        TIME CMD
+0 S     0 230734 230732  0  80   0 -  1091 poll_s ?          0:00 run-parts --report /etc/cron.daily
